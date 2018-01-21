@@ -1,2 +1,2 @@
-# Zombie_Inventory_C
-Zombie CLI app in progress 
+# Pokemon_Cli
+Pokemon CLI app in progress 

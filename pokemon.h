@@ -3,22 +3,28 @@
 
 
 #include <iostream>
+#include "move.h"
+using namespace std;
 
 enum type {grass, fire ,water};
 
 class pokemon{
   private:
+    string name;
     int hp;
     int atk;
     int def;
     int sp_atk;
     int sp_def;
     type poke_type;
+    int level;
+    int exp_pts;
+
 
   public:
     //constructors
     pokemon();
-    pokemon(int ,int ,int ,int,int ,type);
+    pokemon(string,int ,int ,int ,int,int ,type,int,int);
 
 
     int get_hp();

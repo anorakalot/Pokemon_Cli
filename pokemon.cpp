@@ -2,21 +2,27 @@
 #include <iostream>
 
 pokemon::pokemon(){
+  name = name;
   hp = 1;
   atk = 1;
   sp_atk = 1;
   def = 1;
   sp_def = 1;
   poke_type = fire;
+  level = 1;
+  exp_pts = 0;
 }
 
-pokemon::pokemon(int hp,int atk,int sp_atk,int def,int sp_def, type type_given){
+pokemon::pokemon(string name,int hp,int atk,int sp_atk,int def,int sp_def, type type_given){
+  this-> name = name;
   this-> hp = hp;
   this-> atk = atk;
   this-> sp_atk = sp_atk;
   this-> def = def;
   this-> sp_def = sp_def;
   this-> poke_type = type_given;
+  level = 1;
+  exp_pts = 0;
 }
 
 int pokemon::get_hp(){

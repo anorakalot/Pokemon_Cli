@@ -7,8 +7,17 @@ pokemon::pokemon(){
   sp_atk = 1;
   def = 1;
   sp_def = 1;
+  poke_type = fire;
 }
 
+pokemon::pokemon(int hp,int atk,int sp_atk,int def,int sp_def, type type_given){
+  this-> hp = hp;
+  this-> atk = atk;
+  this-> sp_atk = sp_atk;
+  this-> def = def;
+  this-> sp_def = sp_def;
+  this-> poke_type = type_given;
+}
 
 int pokemon::get_hp(){
   return this->hp;
@@ -21,8 +30,6 @@ int pokemon::get_atk(){
 int pokemon::get_sp_atk(){
   return this->sp_atk;
 }
-
-
 
 int pokemon::get_def(){
   return this->def;
@@ -37,6 +44,9 @@ void pokemon::lose_hp(int dmg){
   this->hp -=dmg;
 }
 
+ type pokemon::get_type(){
+  return this -> poke_type;
+}
 
 int pokemon::damage_atk(pokemon enemy){
   int power = 1;

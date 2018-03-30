@@ -2,7 +2,8 @@
 #include <iostream>
 
 pokemon::pokemon(){
-  name = name;
+  name = "";
+  sprite = "";
   hp = 1;
   atk = 1;
   sp_atk = 1;
@@ -13,8 +14,9 @@ pokemon::pokemon(){
   exp_pts = 0;
 }
 
-pokemon::pokemon(string name,int hp,int atk,int sp_atk,int def,int sp_def, type type_given){
+pokemon::pokemon(string name,string sprite,int hp,int atk,int sp_atk,int def,int sp_def, type type_given){
   this-> name = name;
+  this->sprite = sprite;
   this-> hp = hp;
   this-> atk = atk;
   this-> sp_atk = sp_atk;
@@ -46,27 +48,73 @@ int pokemon::get_sp_def(){
   return this->sp_def;
 }
 
+int pokemon::get_level(){
+  return this -> level;
+}
 void pokemon::lose_hp(int dmg){
   this->hp -=dmg;
 }
 
- type pokemon::get_type(){
+
+type pokemon::get_type(){
   return this -> poke_type;
 }
 
-int pokemon::damage_atk(pokemon enemy){
-  int power = 1;
-  int level = 1;
-  int modifier = 1;
+int pokemon::damage_atk(move attack_move,pokemon enemy){
+  int power = attack_move.power;
+  int level = get_level();
+  int modifier = get_modifier(attack_move, enemy);
   int damage = (((2*level/5) + 2) * power * (this -> get_atk() / enemy.get_def()))/ 50 + 2 * modifier;
   return damage;
 }
 
 
-int pokemon::damage_sp_atk(pokemon enemy){
-  int power = 1;
-  int level = 1;
+int pokemon::get_modifier(move attack_move, pokemon enemy){
   int modifier = 1;
+  int stab  = 1;
+  int type_eff = 1;
+  if (attack_move.move_type == enemy.poke_type){
+      stab = 1.5;
+  }
+  if (attack_move.move_type == grass && enemy.poke_type == fire){
+    type_eff = 0.5;
+  }
+  if (attack_move.move_type == grass && enemy.poke_type == water){
+    type_eff = 2;
+  }
+  if (attack_move.move_type == fire && enemy.poke_type == water){
+    type_eff = 0.5;
+  }
+  if (attack_move.move_type == fire && enemy.poke_type == grass){
+    type_eff = 2;
+  }
+  if (attack_move.move_type == water && enemy.poke_type == grass){
+    type_eff = 0.5;
+  }
+  if (attack_move.move_type == water && enemy.poke_type == fire){
+    type_eff = 2;
+  }
+
+
+  modifier = stab * type_eff;
+  return modifier;
+
+
+}
+
+int pokemon::damage_sp_atk(move sp_atk_move,pokemon enemy){
+  int power = sp_atk_move.power;
+  int level = get_level();
+  int modifier = get_modifier(sp_atk_move, enemy);
   int damage = (((2*level/5) + 2) * power * (this -> get_sp_atk() / enemy.get_sp_def()))/ 50 + 2 * modifier;
   return damage;
+}
+
+
+void pokemon::add_move(int power, string name , type move_type){
+  move new_move;
+  new_move.power = power;
+  new_move.name = name;
+  new_move.move_type = move_type;
+  moves.push_back(new_move);
 }

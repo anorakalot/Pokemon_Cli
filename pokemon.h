@@ -9,11 +9,13 @@ using namespace std;
 
 
 enum type {grass, fire ,water};
+enum move_attack{special_atk,physical_atk};
 
 struct move{
   int power;
   string name;
   type move_type;
+  move_attack attack_type;
 };
 
 class pokemon{
@@ -32,6 +34,7 @@ class pokemon{
     int level;
     int exp_pts;
     vector<move> moves;
+    int speed;
 
   public:
 
@@ -46,14 +49,17 @@ class pokemon{
     int get_sp_atk();
     int get_sp_def();
     int get_level();
+    int get_speed();
+    string get_sprite();
     type get_type();
+
 
     int damage_sp_atk(move,pokemon);
     int damage_atk(move,pokemon);
     void lose_hp(int);
     int get_modifier(move,pokemon);
-    void add_move(int,string,type);
-
+    void add_move(int,string,type,move_attack);
+    void show_moves();
 };
 
 

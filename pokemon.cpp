@@ -1,6 +1,6 @@
 #include "pokemon.h"
 #include <iostream>
-
+using namespace std;
 pokemon::pokemon(){
   name = "";
   sprite = "";
@@ -31,6 +31,10 @@ int pokemon::get_hp(){
   return this->hp;
 }
 
+int pokemon::get_speed(){
+  return this -> speed;
+}
+
 int pokemon::get_atk(){
   return this->atk;
 }
@@ -43,6 +47,9 @@ int pokemon::get_def(){
   return this->def;
 }
 
+string pokemon::get_sprite(){
+  return this-> sprite;
+}
 
 int pokemon::get_sp_def(){
   return this->sp_def;
@@ -111,10 +118,17 @@ int pokemon::damage_sp_atk(move sp_atk_move,pokemon enemy){
 }
 
 
-void pokemon::add_move(int power, string name , type move_type){
+void pokemon::show_moves(){
+  for(int x =0; x < moves.size(); ++x){
+    cout << x << ": " << moves.at(x).name << endl;
+  }
+}
+
+void pokemon::add_move(int power, string name , type move_type, move_attack attack_type){
   move new_move;
   new_move.power = power;
   new_move.name = name;
   new_move.move_type = move_type;
+  new_move.attack_type = attack_type;
   moves.push_back(new_move);
 }

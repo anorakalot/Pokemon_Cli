@@ -15,7 +15,7 @@ private:
 
 
 public:
-  add_pokemon;
+  void add_pokemon(pokemon);
 
 };
 

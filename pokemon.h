@@ -40,7 +40,7 @@ class pokemon{
 
     //constructors
     pokemon();
-    pokemon(string,string,int ,int ,int ,int,int ,type);
+    pokemon(string,string,int ,int ,int ,int,int ,type,int,int,vector<move>,int);
 
 
     int get_hp();
@@ -52,7 +52,7 @@ class pokemon{
     int get_speed();
     string get_sprite();
     type get_type();
-
+    vector<move> get_moves();
 
     int damage_sp_atk(move,pokemon);
     int damage_atk(move,pokemon);
@@ -60,6 +60,8 @@ class pokemon{
     int get_modifier(move,pokemon);
     void add_move(int,string,type,move_attack);
     void show_moves();
+
+    //void battle(pokemon);
 };
 
 

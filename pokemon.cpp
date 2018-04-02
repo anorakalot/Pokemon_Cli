@@ -1,5 +1,6 @@
 #include "pokemon.h"
 #include <iostream>
+#include <vector>
 using namespace std;
 pokemon::pokemon(){
   name = "";
@@ -12,9 +13,12 @@ pokemon::pokemon(){
   poke_type = fire;
   level = 1;
   exp_pts = 0;
+  moves = moves;
+  speed = 1;
 }
 
-pokemon::pokemon(string name,string sprite,int hp,int atk,int sp_atk,int def,int sp_def, type type_given){
+pokemon::pokemon(string name,string sprite,int hp,int atk,int sp_atk,int def,int sp_def, type type_given,int level,
+   int exp_pts,vector<move> moves, int speed){
   this-> name = name;
   this->sprite = sprite;
   this-> hp = hp;
@@ -23,8 +27,10 @@ pokemon::pokemon(string name,string sprite,int hp,int atk,int sp_atk,int def,int
   this-> def = def;
   this-> sp_def = sp_def;
   this-> poke_type = type_given;
-  level = 1;
-  exp_pts = 0;
+  this -> level = 1;
+  this -> exp_pts = 0;
+  this ->moves = moves;
+  this -> speed = speed;
 }
 
 int pokemon::get_hp(){
@@ -122,6 +128,10 @@ void pokemon::show_moves(){
   for(int x =0; x < moves.size(); ++x){
     cout << x << ": " << moves.at(x).name << endl;
   }
+}
+
+vector<move> pokemon::get_moves(){
+  return moves;
 }
 
 void pokemon::add_move(int power, string name , type move_type, move_attack attack_type){
